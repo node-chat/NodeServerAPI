@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.node-chat</groupId>
-    <artifactId>NodeChatAPI</artifactId>
+    <artifactId>NodeServerAPI</artifactId>
     <version>0.0.1-DEV</version>
 
     <repositories>

@@ -15,7 +15,7 @@ public class ExampleListener {
 
     @EventTarget
     public void onJoin(UserJoinEvent event) {
-        System.out.println(event.getSocket().toString());
+        System.out.println(event.getSocket().toString() + "");
     }
 
     @EventTarget

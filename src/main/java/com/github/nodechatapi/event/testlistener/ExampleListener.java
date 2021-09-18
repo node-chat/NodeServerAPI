@@ -20,10 +20,7 @@ public class ExampleListener {
 
     @EventTarget
     public void onMessage(UserMessageEvent event) {
-        if (event.getMessage().contains("bruh")) {
-            event.setCancelled(true);
-            event.getSocket().send("[SERVER] NOT OKIE");
-        }
+
     }
 
 }

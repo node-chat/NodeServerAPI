@@ -6,7 +6,24 @@
 
     <groupId>com.github.node-chat</groupId>
     <artifactId>NodeChatAPI</artifactId>
-    <version>1.0</version>
+    <version>0.0.1-DEV</version>
+
+    <repositories>
+
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.java-websocket</groupId>
+            <artifactId>Java-WebSocket</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.atteo.classindex</groupId>
+            <artifactId>classindex</artifactId>
+            <version>3.4</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

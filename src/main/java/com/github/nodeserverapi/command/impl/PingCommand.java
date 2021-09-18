@@ -11,6 +11,6 @@ public class PingCommand implements Command {
 
     @Override
     public void onInvoked(User user, String[] args) {
-        user.getWebSocket().send("[SERVER] Pong!");
+        user.getWebSocket().send("Server -> You: Pong!");
     }
 }

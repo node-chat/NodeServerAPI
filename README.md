@@ -24,6 +24,7 @@ API for Node Server
 ```java
 public class ExampleListener extends Listener {
 
+    @EventTarget
     public void onMessage(UserMessageEvent event) {
         System.out.println(event.getMessage());
     }

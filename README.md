@@ -34,7 +34,7 @@ public class ExampleListener extends Listener {
 **Creating a Command**
 
 ```java
-public class HelloCommand extends Listener {
+public class HelloCommand implements Command {
 
     @Override
     public String getName() {

@@ -41,6 +41,11 @@ public class HelloCommand implements Command {
     public String getName() {
         return "hello";
     }
+    
+    @Override
+    public void onInvoked(User user, String args[]) {
+        user.getWebsocket().send("Server -> You: Hi!");
+    }
 
 }
 ```

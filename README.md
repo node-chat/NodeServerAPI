@@ -44,7 +44,7 @@ public class HelloCommand implements Command {
     
     @Override
     public void onInvoked(User user, String args[]) {
-        user.getWebsocket().send("Server -> You: Hi!");
+        user.getWebSocket().send("Server -> You: Hi!");
     }
 
 }

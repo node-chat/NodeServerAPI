@@ -22,7 +22,7 @@ API for Node Server
 **Creating an Event Listener**
 
 ```java
-public class ExampleListener extends Listener {
+public class ExampleListener implements Listener {
 
     @EventTarget
     public void onMessage(UserMessageEvent event) {

@@ -1,4 +1,4 @@
-package com.github.nodechatapi.event;
+package com.github.nodeserverapi.event;
 
 /**
  * Created by Hexeption on 18/12/2016.

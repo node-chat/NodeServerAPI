@@ -1,4 +1,4 @@
-package com.github.nodechatapi.event;
+package com.github.nodeserverapi.event;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

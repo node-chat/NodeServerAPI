@@ -1,6 +1,6 @@
-package com.github.nodechatapi.util;
+package com.github.nodeserverapi.util;
 
-import com.github.nodechatapi.event.Listener;
+import com.github.nodeserverapi.event.Listener;
 
 import java.util.jar.JarFile;
 

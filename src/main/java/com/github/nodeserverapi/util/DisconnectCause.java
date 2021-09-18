@@ -1,4 +1,4 @@
-package com.github.nodechatapi.util;
+package com.github.nodeserverapi.util;
 
 public enum DisconnectCause {
 

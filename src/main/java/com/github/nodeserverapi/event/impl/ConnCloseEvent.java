@@ -1,7 +1,7 @@
-package com.github.nodechatapi.event.impl;
+package com.github.nodeserverapi.event.impl;
 
-import com.github.nodechatapi.event.Event;
-import com.github.nodechatapi.util.DisconnectCause;
+import com.github.nodeserverapi.event.Event;
+import com.github.nodeserverapi.util.DisconnectCause;
 import org.java_websocket.WebSocket;
 
 public class ConnCloseEvent extends Event {

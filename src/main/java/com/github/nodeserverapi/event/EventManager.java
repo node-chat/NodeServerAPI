@@ -1,8 +1,9 @@
-package com.github.nodechatapi.event;
+package com.github.nodeserverapi.event;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,19 +13,19 @@ public class EventManager {
 
     private static final Map<Class<? extends Event>, ArrayHelper<Data>> REGISTRY_MAP;
 
-    public static void register(final Object o) {
+    public static void register(final Listener listener) {
 
-        for (final Method method : o.getClass().getDeclaredMethods()) {
+        for (final Method method : listener.getClass().getDeclaredMethods()) {
             if (!isMethodBad(method)) {
-                register(method, o);
+                register(method, listener);
             }
         }
     }
 
-    private static void register(final Method method, final Object o) {
+    private static void register(final Method method, final Listener listener) {
 
         final Class<?> clazz = method.getParameterTypes()[0];
-        final Data methodData = new Data(o, method, method.getAnnotation(EventTarget.class).value());
+        final Data methodData = new Data(listener, method, method.getAnnotation(EventTarget.class).value());
 
         if (!methodData.target.isAccessible()) {
             methodData.target.setAccessible(true);
@@ -45,11 +46,11 @@ public class EventManager {
         }
     }
 
-    public static void unregister(final Object o) {
+    public static void unregister(final Listener listener) {
 
         for (final ArrayHelper<Data> flexibalArray : EventManager.REGISTRY_MAP.values()) {
             for (final Data methodData : flexibalArray) {
-                if (methodData.source.equals(o)) {
+                if (methodData.source.equals(listener)) {
                     flexibalArray.remove(methodData);
                 }
             }

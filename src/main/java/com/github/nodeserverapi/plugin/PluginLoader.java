@@ -8,7 +8,6 @@ import java.util.jar.JarFile;
 public class PluginLoader {
 
     private final File folder;
-    private final ArrayList<JarFile> plugins = new ArrayList<>();
 
     public PluginLoader(File folder) {
         this.folder = folder;
@@ -17,10 +16,22 @@ public class PluginLoader {
     public void loadPlugin(File jar) throws Exception {
         ArrayList<Class> classes = FileUtil.getClassesInJar(jar);
         for (Class clazz : classes) {
-            if (clazz.isAssignableFrom(NodePlugin.class)) {
+            System.out.println(clazz);
+            try {
                 Class<NodePlugin> pluginClass = clazz;
                 pluginClass.newInstance().onEnable();
+                System.out.println("Enabled plugin " + jar.getName());
+                return;
+            } catch (ClassCastException e) {
+                System.out.println("Failed to load plugin " + jar.getName());
             }
+        }
+        System.out.println("Failed to load plugin!");
+    }
+
+    public void loadPlugins() throws Exception {
+        for (File jar : FileUtil.getPluginsInFolder(folder)) {
+            loadPlugin(jar);
         }
     }
 

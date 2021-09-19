@@ -1,6 +1,7 @@
 package com.github.nodeserverapi.util;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -26,6 +27,16 @@ public class FileUtil {
             }
         }
         return classes;
+    }
+
+    public static File[] getPluginsInFolder(File folder) {
+        FileFilter fileFilter = new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.getAbsolutePath().endsWith(".jar");
+            }
+        };
+        return folder.listFiles(fileFilter);
     }
 
 }

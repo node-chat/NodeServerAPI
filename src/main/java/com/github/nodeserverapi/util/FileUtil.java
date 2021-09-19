@@ -1,14 +1,32 @@
 package com.github.nodeserverapi.util;
 
-import com.github.nodeserverapi.event.Listener;
-
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 public class FileUtil {
 
-    public static Class<Listener>[] getListeners(JarFile file) {
-        return null;
+    public static ArrayList<Class> getClassesInJar(File jar) throws IOException, ClassNotFoundException {
+        ArrayList<Class> classes = new ArrayList<>();
+        try (JarFile jarFile = new JarFile(jar)) {
+            Enumeration<JarEntry> e = jarFile.entries();
+            URLClassLoader classLoader = new URLClassLoader(new URL[]{new URL("jar:" + jar.toURI().toURL() + "!/")});
+            while (e.hasMoreElements()) {
+                JarEntry entry = e.nextElement();
+                if (entry.getName().endsWith(".class")) {
+                    String className = entry.getName().replace("/", ".").replace(".class", "");
+                    Class clazz = classLoader.loadClass(className);
+                    classes.add(clazz);
+                }
+            }
+        }
+        return classes;
     }
 
-
 }
+

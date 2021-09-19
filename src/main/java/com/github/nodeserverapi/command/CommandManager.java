@@ -33,7 +33,6 @@ public class CommandManager implements Listener {
             event.setCancelled(true);
             String content = event.getContent().replace("/", "");
             String[] args = content.split(" ");
-            System.out.println(args[0]);
             for (Command command : getCommands()) {
                 if (command.getName().equalsIgnoreCase(args[0])) {
                     command.onInvoked(event.getUser(), args);

@@ -3,6 +3,7 @@ import com.github.nodeserverapi.util.FileUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.jar.JarFile;
 
 public class PluginLoader {
@@ -15,7 +16,20 @@ public class PluginLoader {
 
     public void loadPlugin(File jar) throws Exception {
         ArrayList<Class> classes = FileUtil.getClassesInJar(jar);
-        for (Class clazz : classes) {
+        Iterator iterator = classes.iterator();
+        while (iterator.hasNext()) {
+            try {
+                Class<NodePlugin> pluginClass = (Class<NodePlugin>) iterator.next();
+                pluginClass.newInstance().onEnable();
+                System.out.println("Enabled plugin " + jar.getName());
+                return;
+            } catch (ClassCastException e) {
+                if (!iterator.hasNext()) {
+                    System.out.println("Failed to load plugin " + jar.getName());
+                }
+            }
+        }
+        /*for (Class clazz : classes) {
             System.out.println(clazz);
             try {
                 Class<NodePlugin> pluginClass = clazz;
@@ -26,7 +40,7 @@ public class PluginLoader {
                 System.out.println("Failed to load plugin " + jar.getName());
             }
         }
-        System.out.println("Failed to load plugin!");
+        System.out.println("Failed to load plugin!");*/
     }
 
     public void loadPlugins() throws Exception {
